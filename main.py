@@ -112,6 +112,7 @@ def train(config_path, cuda):
     # Configuration
     CONFIG = Dict(yaml.load(config_path))
     device = get_device(cuda)
+    # Allow PyTorch to search for the quickest optimization algorithm
     torch.backends.cudnn.benchmark = True
 
     # Dataset

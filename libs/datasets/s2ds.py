@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 #
-# Author: Kazuto Nakashima
-# URL:    https://kazuto1011.github.io
-# Date:   08 February 2019
+# Author: David Eike Tschirschwitz
+# URL:    https://github.com/Madave94
+# Date:   26 April 2020
 
 from __future__ import absolute_import, print_function
 
@@ -18,23 +18,23 @@ from torch.utils import data
 from .base import _BaseDataset
 
 
-class VOC(_BaseDataset):
+class S2DS(_BaseDataset):
     """
-    PASCAL VOC Segmentation dataset
+    S2DS dataset
     """
 
-    def __init__(self, year=2012, **kwargs):
-        self.year = year
-        super(VOC, self).__init__(**kwargs)
+    def __init__(self, part=1, **kwargs):
+        self.part = part
+        super(S2DS, self).__init__(**kwargs)
 
     def _set_files(self):
-        self.root = osp.join(self.root, "VOC{}".format(self.year))
-        self.image_dir = osp.join(self.root, "JPEGImages")
-        self.label_dir = osp.join(self.root, "SegmentationClass")
+        self.root = osp.join(self.root, "part{}".format(self.part))
+        self.image_dir = osp.join(self.root, "images")
+        self.label_dir = osp.join(self.root, "labels")
 
         if self.split in ["train", "trainval", "val", "test"]:
             file_list = osp.join(
-                self.root, "ImageSets/Segmentation", self.split + ".txt"
+                self.root, "Segmentation", self.split + ".txt"
             )
             file_list = tuple(open(file_list, "r"))
             file_list = [id_.rstrip() for id_ in file_list]
@@ -52,8 +52,7 @@ class VOC(_BaseDataset):
         label = np.asarray(Image.open(label_path), dtype=np.int32)
         return image_id, image, label
 
-
-class VOCAug(_BaseDataset):
+class S2DSAug(_BaseDataset):
     """
     PASCAL VOC Segmentation dataset with extra annotations
     """
@@ -66,12 +65,10 @@ class VOCAug(_BaseDataset):
         self.root = osp.join(self.root, "VOC{}".format(self.year))
 
         if self.split in ["train", "train_aug", "trainval", "trainval_aug", "val"]:
-            #print(self.root, "ImageSets/SegmentationAug", self.split + ".txt")
             file_list = osp.join(
                 self.root, "ImageSets/SegmentationAug", self.split + ".txt"
             )
             file_list = tuple(open(file_list, "r"))
-            #print(file_list[1])
             file_list = [id_.rstrip().split(" ") for id_ in file_list]
             self.files, self.labels = list(zip(*file_list))
         else:
@@ -105,7 +102,7 @@ if __name__ == "__main__":
         split="train_aug",
         ignore_label=255,
         mean_bgr=(104.008, 116.669, 122.675),
-        year=2012,
+        part=1,
         augment=True,
         base_size=None,
         crop_size=513,

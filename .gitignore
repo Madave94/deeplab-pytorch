@@ -114,3 +114,7 @@ _*
 *_v3plus.py
 *.json
 *.zip
+
+# datasets
+/VOCdevkit
+/S2DSdevkit

@@ -12,6 +12,7 @@ import numpy as np
 import torch
 from PIL import Image
 from torch.utils import data
+import matplotlib.pyplot as plt
 
 
 class _BaseDataset(data.Dataset):
@@ -121,3 +122,22 @@ class _BaseDataset(data.Dataset):
         fmt_str += "    Split: {}\n".format(self.split)
         fmt_str += "    Root: {}".format(self.root)
         return fmt_str
+    
+    
+    def show_pair(self, image_id, image, label):
+        """
+            Added function to plot image, label and overlay of these two.
+            Needs also the image_id to show in caption
+        """
+        fig, ax =  plt.subplots(1,3)
+        #fig.suptitle(image_id)
+        ax[0].imshow(image/255)
+        ax[0].axis('off')
+        ax[0].set_title("image " +image_id)
+        ax[1].imshow(label/255)
+        ax[1].axis('off')
+        ax[1].set_title("label " +image_id)
+        ax[2].imshow(image/255, interpolation='none')
+        ax[2].imshow(label/255, alpha = 0.4, interpolation='none')
+        ax[2].axis('off')
+        ax[2].set_title("overlay " +image_id)
