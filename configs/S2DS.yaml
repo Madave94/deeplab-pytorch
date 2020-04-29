@@ -1,16 +1,17 @@
 EXP:
-    ID: voc12
+    ID: S2DS
     OUTPUT_DIR: data
 
 DATASET:
-    NAME: vocaug
-    ROOT: VOCdevkit/
-    LABELS: ./data/datasets/voc12/labels.txt
-    N_CLASSES: 21
+    NAME: S2DS
+    ROOT: S2DSdevkit/
+    PART: 2
+    LABELS: ./data/datasets/S2DS/labels.txt
+    N_CLASSES: 7
     IGNORE_LABEL: 255
     SCALES: [0.5, 0.75, 1.0, 1.25, 1.5]
     SPLIT:
-        TRAIN: train_aug
+        TRAIN: train
         VAL: val
         TEST: test
 

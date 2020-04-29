@@ -1,0 +1,7 @@
+0	__background__
+1	spalling
+2	rust stain
+3	discoloration
+4	vegatation 
+5	honeycomb
+6	graffiti
