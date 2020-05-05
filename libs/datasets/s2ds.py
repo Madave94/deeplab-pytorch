@@ -23,7 +23,7 @@ class S2DS(_BaseDataset):
     S2DS dataset
     """
 
-    def __init__(self, part=1, **kwargs):
+    def __init__(self, part=2, **kwargs):
         self.part = part
         super(S2DS, self).__init__(**kwargs)
 
