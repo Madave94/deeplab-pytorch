@@ -31,7 +31,7 @@ class S2DS(_BaseDataset):
         # after this root includes the part number
         self.root = osp.join(self.root, "part{}".format(self.part))
         self.image_dir = osp.join(self.root, "images")
-        self.label_dir = osp.join(self.root, "labelsGrayscale")
+        self.label_dir = osp.join(self.root, "labels")
 
         if self.split in ["train", "trainval", "val", "test"]:
             file_list = osp.join(

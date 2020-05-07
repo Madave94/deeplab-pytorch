@@ -5,9 +5,9 @@ EXP:
 DATASET:
     NAME: S2DS
     ROOT: S2DSdevkit/
-    PART: 2
+    PART: merged
     LABELS: ./data/datasets/S2DS/labels.txt
-    N_CLASSES: 7
+    N_CLASSES: 6
     IGNORE_LABEL: 255
     SCALES: [0.5, 0.75, 1.0, 1.25, 1.5]
     SPLIT:
@@ -38,9 +38,9 @@ SOLVER:
     BATCH_SIZE:
         TRAIN: 5
         TEST: 1
-    ITER_MAX: 2000
+    ITER_MAX: 10000
     ITER_SIZE: 2
-    ITER_SAVE: 1000
+    ITER_SAVE: 2500
     ITER_TB: 100
     LR_DECAY: 10
     LR: 2.5e-4
