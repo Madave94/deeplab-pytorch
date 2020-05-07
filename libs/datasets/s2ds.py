@@ -31,7 +31,7 @@ class S2DS(_BaseDataset):
         # after this root includes the part number
         self.root = osp.join(self.root, "part{}".format(self.part))
         self.image_dir = osp.join(self.root, "images")
-        self.label_dir = osp.join(self.root, "labels")
+        self.label_dir = osp.join(self.root, "labelsGrayscale")
 
         if self.split in ["train", "trainval", "val", "test"]:
             file_list = osp.join(
@@ -46,11 +46,11 @@ class S2DS(_BaseDataset):
     def _load_data(self, index):
         # Set paths
         image_id = self.files[index]
-        print(image_id)
+        #print(image_id)
         image_path = osp.join(self.image_dir, image_id + ".jpg")
-        print(image_path)
+        #print(image_path)
         label_path = osp.join(self.label_dir, image_id + ".png")
-        print(label_path)
+        #print(label_path)
         # Load an image
         image = cv2.imread(image_path, cv2.IMREAD_COLOR).astype(np.float32)
         label = np.asarray(Image.open(label_path), dtype=np.int32)

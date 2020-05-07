@@ -60,7 +60,6 @@ class _BaseDataset(data.Dataset):
 
     def _augmentation(self, image, label):
         # Scaling
-        print("label size " + str(label.shape))
         h, w = label.shape
         if self.base_size:
             if h > w:
