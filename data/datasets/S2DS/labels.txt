@@ -3,5 +3,4 @@
 2	rust stain
 3	discoloration
 4	vegatation 
-5	honeycomb
-6	graffiti
+5	graffiti
