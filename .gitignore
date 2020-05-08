@@ -118,3 +118,4 @@ _*
 # datasets
 /VOCdevkit
 /S2DSdevkit
+*.pth
