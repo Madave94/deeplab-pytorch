@@ -12,8 +12,6 @@ import numpy as np
 import torch
 from PIL import Image
 from torch.utils import data
-import matplotlib.pyplot as plt
-
 
 class _BaseDataset(data.Dataset):
     """
@@ -122,27 +120,3 @@ class _BaseDataset(data.Dataset):
         fmt_str += "    Split: {}\n".format(self.split)
         fmt_str += "    Root: {}".format(self.root)
         return fmt_str
-    
-    
-    def show_pair(self, image_id, image, label, batch_nr = 0, batch=True):
-        """
-            Added function to plot image, label and overlay of these two.
-            Needs also the image_id to show in caption+
-            batch_nr default, takes the first image in the batch
-        """
-        if batch:
-            image = image[0].permute(1,2,0)
-            label = label[0]
-            image_id = image_id[0]
-        fig, ax =  plt.subplots(1,3)
-        #fig.suptitle(image_id)
-        ax[0].imshow(image/255)
-        ax[0].axis('off')
-        ax[0].set_title("image " +image_id)
-        ax[1].imshow(label)
-        ax[1].axis('off')
-        ax[1].set_title("label " +image_id)
-        ax[2].imshow(image/255, interpolation='none')
-        ax[2].imshow(label, alpha = 0.4, interpolation='none')
-        ax[2].axis('off')
-        ax[2].set_title("overlay " +image_id)
