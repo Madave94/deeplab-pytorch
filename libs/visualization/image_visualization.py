@@ -68,7 +68,7 @@ def preprocess_triplet(image, gt_label, label, image_id, mean_bgr, batch_nr = 0,
 def show_triplet(image_id, image, gt_label, label):
     # custom colormap for labels
     cmap = colors.ListedColormap([(0.0,0.0,0.0),(255/255,0/255,0/255),(165/255,42/255,42/255),(0/255,255/255,255/255),(127/255,255/255,0/255),(128/255, 0/255, 128/255)])
-    bounds = [0,1,2,3,4,5]
+    bounds = [0,1,2,3,4,5,6]
     norm = colors.BoundaryNorm(bounds, cmap.N)
     # custom colormap for hitmap
     cmapHM = colors.ListedColormap(["red","green"])
@@ -102,3 +102,5 @@ def show_triplet(image_id, image, gt_label, label):
 def save_triplet(image_id, image, gt_label, label, path):
     fig = show_triplet(image_id, image, gt_label, label)
     fig.savefig(path + "PV_" + str(image_id) +'.png')
+    fig.clear()
+    plt.close(fig)
